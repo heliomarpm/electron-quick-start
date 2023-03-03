@@ -83,7 +83,13 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
         run: |
-          gh release create "${{ github.ref_name }}" --title "${{ github.ref_name }}" --generate-notes --draft
+          gh release create --draft "${{ github.ref_name }}" --title "${{ github.ref_name }}" --generate-notes 
+
+      - name: Upload Release Asset
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
           gh release upload "${{ github.ref_name }}" ./dist/*.exe
           gh release upload "${{ github.ref_name }}" ./dist/*.zip
           gh release upload "${{ github.ref_name }}" ./dist/*.tar.gz
