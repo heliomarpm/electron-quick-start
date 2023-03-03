@@ -1,0 +1,65 @@
+{
+  "name": "electron-quick-start",
+  "productName": "Electron Quick Start",
+  "version": "1.0.0",
+  "description": "Your awesome app description",
+  "main": "main.js",
+  "scripts": {
+    "dev": "electron . --developer",
+    "start": "electron .",
+    "postinstall": "electron-builder install-app-deps",
+    "build": "electron-builder"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/heliomarpm/electron-quick-start.git"
+  },
+  "keywords": [
+    "electron",
+    "electron-builder",
+    "vanillajs"
+  ],
+  "author": {
+    "name": "Heliomar P. Marques",
+    "email": "heliomarpm@proton.me"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/heliomarpm/electron-quick-start/issues"
+  },
+  "homepage": "https://github.com/heliomarpm/electron-quick-start#readme",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "electron": "^23.1.1",
+    "electron-builder": "^23.6.0"
+  },
+  "build": {
+		"appId": "br.heliomarpm.appname",
+		"productName": "Electron Quick Start",
+    "copyright": "Copyright © 2023 — ${author}",
+		"artifactName": "${name}_setup_v${version}_${os}-${arch}.${ext}",
+		"directories": {
+			"buildResources": "src/assets/build",
+      "output": "dist/v${version}"
+		},
+		"mac": {
+			"category": "public.app-category.utilities"
+		},
+		"win": {
+			"target": [
+				"nsis",
+				"portable"
+			]
+		},
+		"linux": {
+			"category": "Utility",
+			"target": [
+				"AppImage",
+				"deb",
+				"freebsd",
+				"rpm"
+			]
+		}
+  }
+}
