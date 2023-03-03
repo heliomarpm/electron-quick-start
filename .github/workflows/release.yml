@@ -18,7 +18,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-       - name: variables
+      - name: variables
         run: |
           echo github.ref
           echo ${github.ref}
