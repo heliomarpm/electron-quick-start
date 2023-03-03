@@ -51,7 +51,7 @@ jobs:
 
           # If the commit is tagged with a version (e.g. "v1.0.0"),
           # release the app after building
-          release: false # ${{ startsWith(github.ref, 'refs/tags/v') }}
+          release: true
       
       # - name: Create Release
       #   id: create_release
@@ -74,6 +74,9 @@ jobs:
       #     asset_path: ./dist/${{ startsWith(github.ref, 'refs/tags/v') }}
       #     asset_name: TJsonNotes-Setup-v1.1.0_win_x64.zip
       #     asset_content_type: application/zip
+      - name: see directory
+        run: |
+          ls ./dist/${{ github.ref_name }}
 
       - name: Upload Release Asset
         uses: softprops/action-gh-release@v1
@@ -81,15 +84,15 @@ jobs:
         with:
           draft: true
           files: |
-            dist/${{ github.ref_name }}/*.exe
-            dist/${{ github.ref_name }}/*.zip
-            dist/${{ github.ref_name }}/*.tar.gz
-            dist/${{ github.ref_name }}/*.dmg
-            dist/${{ github.ref_name }}/*.snap
-            dist/${{ github.ref_name }}/*.AppImage
-            dist/${{ github.ref_name }}/*.deb
-            dist/${{ github.ref_name }}/*.freebsb
-            dist/${{ github.ref_name }}/*.pacman
-            dist/${{ github.ref_name }}/*.rpm
+            ./dist/${{ github.ref_name }}/*.exe
+            ./dist/${{ github.ref_name }}/*.zip
+            ./dist/${{ github.ref_name }}/*.tar.gz
+            ./dist/${{ github.ref_name }}/*.dmg
+            ./dist/${{ github.ref_name }}/*.snap
+            ./dist/${{ github.ref_name }}/*.AppImage
+            ./dist/${{ github.ref_name }}/*.deb
+            ./dist/${{ github.ref_name }}/*.freebsb
+            ./dist/${{ github.ref_name }}/*.pacman
+            ./dist/${{ github.ref_name }}/*.rpm
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
