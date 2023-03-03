@@ -5,84 +5,105 @@ on:
     tags: ["*"]
 
 jobs:
-  release:
-    if: startsWith(github.ref, 'refs/tags/v')
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        # os: [macos-latest, ubuntu-latest, windows-latest]
-        os: [ubuntu-latest]
-
+  var_context:
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v2
 
-      - name: Install Node.js, NPM and Yarn
-        uses: actions/setup-node@v3
-        with:
-          node-version: '>=16.8.0'
+      - name: echos
+        run: |
+          ls ./dist
+          echo github.ref
+          echo ${github.ref}
+          echo ${{ startsWith(github.ref, 'refs/tags/v') }}
+          echo ${{ github.ref_name }}
 
-      - name: apt-update
-        if: startsWith(matrix.os, 'ubuntu-latest')
-        run: sudo apt-get update
+      - name: Set output
+        id: vars
+        run: echo ::set-output name=short_ref::${GITHUB_REF#refs/*/}
 
-      - name: autoremove
-        if: startsWith(matrix.os, 'ubuntu-latest')
-        run: sudo apt autoremove
+      - name: Check output
+        run: echo ${{ steps.vars.outputs.short_ref }}
+        
 
-      - name: Install libarchive rpm on Linux
-        if: startsWith(matrix.os, 'ubuntu-latest')
-        run: sudo apt-get install libarchive-tools rpm
+  # build_release:
+  #   if: startsWith(github.ref, 'refs/tags/v')
+  #   runs-on: ${{ matrix.os }}
 
-      - name: Build Electron app
-        uses: coparse-inc/action-electron-builder@v1.0.0
-        with:
-          # GitHub token, automatically provided to the action
-          # (No need to define this secret in the repo settings)
-          github_token: ${{ secrets.github_token }}
+  #   strategy:
+  #     matrix:
+  #       # os: [macos-latest, ubuntu-latest, windows-latest]
+  #       os: [ubuntu-latest]
 
-          # If the commit is tagged with a version (e.g. "v1.0.0"),
-          # release the app after building
-          release: false # ${{ startsWith(github.ref, 'refs/tags/v') }}
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v3
+
+  #     - name: Install Node.js, NPM and Yarn
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: '>=16.8.0'
+
+  #     - name: apt-update
+  #       if: startsWith(matrix.os, 'ubuntu-latest')
+  #       run: sudo apt-get update
+
+  #     - name: autoremove
+  #       if: startsWith(matrix.os, 'ubuntu-latest')
+  #       run: sudo apt autoremove
+
+  #     - name: Install libarchive rpm on Linux
+  #       if: startsWith(matrix.os, 'ubuntu-latest')
+  #       run: sudo apt-get install libarchive-tools rpm
+
+  #     - name: Build Electron app
+  #       uses: coparse-inc/action-electron-builder@v1.0.0
+  #       with:
+  #         # GitHub token, automatically provided to the action
+  #         # (No need to define this secret in the repo settings)
+  #         github_token: ${{ secrets.github_token }}
+
+  #         # If the commit is tagged with a version (e.g. "v1.0.0"),
+  #         # release the app after building
+  #         release: false # ${{ startsWith(github.ref, 'refs/tags/v') }}
       
-      # - name: Create Release
-      #   id: create_release
-      #   uses: actions/create-release@v1
-      #   with:
-      #     tag_name:  ${{ startsWith(github.ref, 'refs/tags/v') }}
-      #     release_name: ${{ startsWith(github.ref, 'refs/tags/v') }}
-      #     draft: true
-      #     prerelease: false
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #     # - name: Create Release
+  #     #   id: create_release
+  #     #   uses: actions/create-release@v1
+  #     #   with:
+  #     #     tag_name:  ${{ startsWith(github.ref, 'refs/tags/v') }}
+  #     #     release_name: ${{ startsWith(github.ref, 'refs/tags/v') }}
+  #     #     draft: true
+  #     #     prerelease: false
+  #     #   env:
+  #     #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # - name: Upload Release Asset
-      #   id: upload-release-asset 
-      #   uses: actions/upload-release-asset@v1
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   with:
-      #     upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-      #     asset_path: ./dist/${{ startsWith(github.ref, 'refs/tags/v') }}
-      #     asset_name: TJsonNotes-Setup-v1.1.0_win_x64.zip
-      #     asset_content_type: application/zip
+  #     # - name: Upload Release Asset
+  #     #   id: upload-release-asset 
+  #     #   uses: actions/upload-release-asset@v1
+  #     #   env:
+  #     #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #     #   with:
+  #     #     upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+  #     #     asset_path: ./dist/${{ startsWith(github.ref, 'refs/tags/v') }}
+  #     #     asset_name: TJsonNotes-Setup-v1.1.0_win_x64.zip
+  #     #     asset_content_type: application/zip
 
-      - name: Upload Release Asset
-        uses: softprops/action-gh-release@v1
-        # if: startsWith(github.ref, 'refs/tags/')
-        with:
-          draft: true
-          files: |
-            dist/${{ startsWith(github.ref, 'refs/tags/v') }}/*.exe
-            dist/${{ startsWith(github.ref, 'refs/tags/v') }}/*.zip
-            dist/${{ startsWith(github.ref, 'refs/tags/v') }}/*.tar.gz
-            dist/${{ startsWith(github.ref, 'refs/tags/v') }}/*.dmg
-            dist/${{ startsWith(github.ref, 'refs/tags/v') }}/*.snap
-            dist/${{ startsWith(github.ref, 'refs/tags/v') }}/*.AppImage
-            dist/${{ startsWith(github.ref, 'refs/tags/v') }}/*.deb
-            dist/${{ startsWith(github.ref, 'refs/tags/v') }}/*.freebsb
-            dist/${{ startsWith(github.ref, 'refs/tags/v') }}/*.pacman
-            dist/${{ startsWith(github.ref, 'refs/tags/v') }}/*.rpm
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #     - name: Upload Release Asset
+  #       uses: softprops/action-gh-release@v1
+  #       # if: startsWith(github.ref, 'refs/tags/')
+  #       with:
+  #         draft: true
+  #         files: |
+  #           dist/${{ startsWith(github.ref, 'refs/tags/v') }}/*.exe
+  #           dist/${{ startsWith(github.ref, 'refs/tags/v') }}/*.zip
+  #           dist/${{ startsWith(github.ref, 'refs/tags/v') }}/*.tar.gz
+  #           dist/${{ startsWith(github.ref, 'refs/tags/v') }}/*.dmg
+  #           dist/${{ startsWith(github.ref, 'refs/tags/v') }}/*.snap
+  #           dist/${{ startsWith(github.ref, 'refs/tags/v') }}/*.AppImage
+  #           dist/${{ startsWith(github.ref, 'refs/tags/v') }}/*.deb
+  #           dist/${{ startsWith(github.ref, 'refs/tags/v') }}/*.freebsb
+  #           dist/${{ startsWith(github.ref, 'refs/tags/v') }}/*.pacman
+  #           dist/${{ startsWith(github.ref, 'refs/tags/v') }}/*.rpm
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
