@@ -1,14 +1,15 @@
 {
   "name": "electron-quick-start",
   "productName": "Electron Quick Start",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Your awesome app description",
   "main": "main.js",
   "scripts": {
     "dev": "electron . --developer",
     "start": "electron .",
     "postinstall": "electron-builder install-app-deps",
-    "build": "electron-builder"
+    "build": "electron-builder",
+    "release": "node ./bin/modules/release/index.js"
   },
   "repository": {
     "type": "git",
@@ -28,38 +29,38 @@
     "url": "https://github.com/heliomarpm/electron-quick-start/issues"
   },
   "homepage": "https://github.com/heliomarpm/electron-quick-start#readme",
-  "dependencies": {
-  },
   "devDependencies": {
     "electron": "^23.1.1",
-    "electron-builder": "^23.6.0"
+    "electron-builder": "^23.6.0",
+    "open": "^8.4.2",
+    "semver": "^7.3.8"
   },
   "build": {
-		"appId": "br.heliomarpm.appname",
-		"productName": "Electron Quick Start",
+    "appId": "br.heliomarpm.appname",
+    "productName": "Electron Quick Start",
     "copyright": "Copyright © 2023 — ${author}",
-		"artifactName": "${name}_setup_v${version}_${os}-${arch}.${ext}",
-		"directories": {
-			"buildResources": "src/assets/build",
+    "artifactName": "${name}_setup_v${version}_${os}-${arch}.${ext}",
+    "directories": {
+      "buildResources": "src/assets/build",
       "output": "dist/v${version}"
-		},
-		"mac": {
-			"category": "public.app-category.utilities"
-		},
-		"win": {
-			"target": [
-				"nsis",
-				"portable"
-			]
-		},
-		"linux": {
-			"category": "Utility",
-			"target": [
-				"AppImage",
-				"deb",
-				"freebsd",
-				"rpm"
-			]
-		}
+    },
+    "mac": {
+      "category": "public.app-category.utilities"
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ]
+    },
+    "linux": {
+      "category": "Utility",
+      "target": [
+        "AppImage",
+        "deb",
+        "freebsd",
+        "rpm"
+      ]
+    }
   }
 }
