@@ -51,7 +51,7 @@ jobs:
 
           # If the commit is tagged with a version (e.g. "v1.0.0"),
           # release the app after building
-          release: true
+          release: false
       
       # - name: Create Release
       #   id: create_release
