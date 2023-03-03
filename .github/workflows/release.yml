@@ -35,7 +35,7 @@ jobs:
         if: startsWith(matrix.os, 'ubuntu-latest')
         run: sudo apt-get install libarchive-tools rpm
 
-      - name: Release Electron app
+      - name: Build Electron app
         uses: coparse-inc/action-electron-builder@v1.0.0
         with:
           # GitHub token, automatically provided to the action
@@ -44,4 +44,42 @@ jobs:
 
           # If the commit is tagged with a version (e.g. "v1.0.0"),
           # release the app after building
-          release: true # ${{ startsWith(github.ref, 'refs/tags/v') }}
+          release: false # ${{ startsWith(github.ref, 'refs/tags/v') }}
+      
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name:  ${{ startsWith(github.ref, 'refs/tags/v') }}
+          release_name: ${{ startsWith(github.ref, 'refs/tags/v') }}
+          draft: true
+          prerelease: false
+
+      # - name: Upload Release Asset
+      #   id: upload-release-asset 
+      #   uses: actions/upload-release-asset@v1
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   with:
+      #     upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+      #     asset_path: ./dist/${{ startsWith(github.ref, 'refs/tags/v') }}
+      #     asset_name: TJsonNotes-Setup-v1.1.0_win_x64.zip
+      #     asset_content_type: application/zip
+
+      - name: Upload Release Asset
+        uses: softprops/action-gh-release@v1
+        with:
+          draft: true
+          files: |
+            dist/${{ startsWith(github.ref, 'refs/tags/v') }}/*.exe
+            dist/${{ startsWith(github.ref, 'refs/tags/v') }}/*.zip
+            dist/${{ startsWith(github.ref, 'refs/tags/v') }}/*.dmg
+            dist/${{ startsWith(github.ref, 'refs/tags/v') }}/*.AppImage
+            dist/${{ startsWith(github.ref, 'refs/tags/v') }}/*.snap
+            dist/${{ startsWith(github.ref, 'refs/tags/v') }}/*.deb
+            dist/${{ startsWith(github.ref, 'refs/tags/v') }}/*.rpm
+            dist/${{ startsWith(github.ref, 'refs/tags/v') }}/*.tar.gz
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
