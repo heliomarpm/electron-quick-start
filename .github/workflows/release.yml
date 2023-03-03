@@ -76,7 +76,7 @@ jobs:
       #     asset_content_type: application/zip
       - name: see directory
         run: |
-          ls ./dist/${{ github.ref_name }}
+          ls ./dist
 
       - name: Create Release
         env:
