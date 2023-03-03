@@ -18,23 +18,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: variables
-        run: |
-          echo github.ref
-          echo ${github.ref}
-          echo ${{ startsWith(github.ref, 'refs/tags/v') }}
-          echo ${{ github.ref_name }}
-          echo $GITHUB_REF_NAME
-          echo ${{env.GITHUB_REF_NAME}}
-          echo "Tag name from GITHUB_REF_NAME: $GITHUB_REF_NAME"
-          echo "Tag name from github.ref_name: ${{  github.ref_name }}"
-
-      - name: Set output
-        id: vars
-        run: echo ::set-output name=short_ref::${GITHUB_REF#refs/*/}
-
-      - name: Check output
-        run: echo ${{ steps.vars.outputs.short_ref }}
+      # - name: variables
+      #   run: |
+      #     echo ${{github.ref}}
+      #     echo ${{ startsWith(github.ref, 'refs/tags/v') }}
+      #     echo ${{ github.ref_name }}
+      #     echo "Tag name from github.ref_name: ${{  github.ref_name }}"
 
       - name: Install Node.js, NPM and Yarn
         uses: actions/setup-node@v3
