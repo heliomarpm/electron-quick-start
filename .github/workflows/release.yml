@@ -83,17 +83,17 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
         run: |
-          gh release create ${{ github.ref_name }} --title ${{ github.ref_name }} --generate-notes --draft
-          gh release upload ${{ github.ref_name }} ./dist/*.exe
-          gh release upload ${{ github.ref_name }} ./dist/*.zip
-          gh release upload ${{ github.ref_name }} ./dist/*.tar.gz
-          gh release upload ${{ github.ref_name }} ./dist/*.dmg
-          gh release upload ${{ github.ref_name }} ./dist/*.snap
-          gh release upload ${{ github.ref_name }} ./dist/*.AppImage
-          gh release upload ${{ github.ref_name }} ./dist/*.deb
-          gh release upload ${{ github.ref_name }} ./dist/*.freebsb
-          gh release upload ${{ github.ref_name }} ./dist/*.pacman
-          gh release upload ${{ github.ref_name }} ./dist/*.rpm
+          gh release create "${{ github.ref_name }}" --title "${{ github.ref_name }}" --generate-notes --draft
+          gh release upload "${{ github.ref_name }}" ./dist/*.exe
+          gh release upload "${{ github.ref_name }}" ./dist/*.zip
+          gh release upload "${{ github.ref_name }}" ./dist/*.tar.gz
+          gh release upload "${{ github.ref_name }}" ./dist/*.dmg
+          gh release upload "${{ github.ref_name }}" ./dist/*.snap
+          gh release upload "${{ github.ref_name }}" ./dist/*.AppImage
+          gh release upload "${{ github.ref_name }}" ./dist/*.deb
+          gh release upload "${{ github.ref_name }}" ./dist/*.freebsb
+          gh release upload "${{ github.ref_name }}" ./dist/*.pacman
+          gh release upload "${{ github.ref_name }}" ./dist/*.rpm
 
       # - name: Upload Release Asset
       #   uses: softprops/action-gh-release@v1
