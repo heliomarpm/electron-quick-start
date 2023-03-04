@@ -13,7 +13,7 @@ jobs:
     
     strategy:
       matrix:
-        os: [macos-latest, ubuntu-latest]
+        os: [ubuntu-latest, macos-latest, windows-latest]
 
     steps:
       - name: Checkout
@@ -46,7 +46,6 @@ jobs:
       - name: Build Electron app
         uses: coparse-inc/action-electron-builder@v1.0.0
         with:
-          max_attempts: 2
           # GitHub token, automatically provided to the action
           # (No need to define this secret in the repo settings)
           github_token: ${{ secrets.github_token }}
@@ -54,10 +53,13 @@ jobs:
           # If the commit is tagged with a version (e.g. "v1.0.0"),
           # release the app after building
           release: false
+          if: startsWith(matrix.os, 'windows-latest')
+          args: --ia32 --x64
 
       - name: see directory
-        run: |
-          ls ./dist
+        run: ls ./dist
+        if: startsWith(matrix.os, 'windows-latest')
+        run: dir dist
       
       # - name: Create Release
       #   id: create_release
@@ -87,15 +89,24 @@ jobs:
           draft: true
           prerelease: false
           generateReleaseNotes: true
+          if: startsWith(matrix.os, 'macos-latest')
           artifacts: |
             ./dist/latest*.yml
             ./dist/*.dmg
             ./dist/*.zip
+          
+          if: startsWith(matrix.os, 'linux-latest')
+          artifacts: |
+            ./dist/latest*.yml
             ./dist/*.AppImage
             ./dist/*.deb
             ./dist/*.freebsb
             ./dist/*.pacman
             ./dist/*.rpm
+          
+          if: startsWith(matrix.os, 'windows-latest')
+          artifacts: |
+            ./dist/latest*.yml
             ./dist/*.exe
 
       # - name: Create Release
@@ -158,7 +169,6 @@ jobs:
   #     - name: Build Electron app
   #       uses: coparse-inc/action-electron-builder@v1.0.0
   #       with:
-  #         max_attempts: 2
   #         args: --ia32 --x64
   #         github_token: ${{ secrets.github_token }}
   #         release: false
