@@ -43,7 +43,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
         run: |
-          gh release upload "${{ github.ref_name }}" dist/*.exe
+          gh release upload "${{ github.ref_name }}" "dist/*.exe"
       
 
   build_maclinux:
@@ -99,10 +99,10 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
         run: |
-          gh release upload "${{ github.ref_name }}" ./dist/*.dmg
-          gh release upload "${{ github.ref_name }}" ./dist/*.zip
-          gh release upload "${{ github.ref_name }}" ./dist/*.AppImage
-          gh release upload "${{ github.ref_name }}" ./dist/*.deb
-          gh release upload "${{ github.ref_name }}" ./dist/*.freebsb
-          gh release upload "${{ github.ref_name }}" ./dist/*.rpm
+          gh release upload "${{ github.ref_name }}" "./dist/*.dmg"
+          gh release upload "${{ github.ref_name }}" "./dist/*.zip"
+          gh release upload "${{ github.ref_name }}" "./dist/*.AppImage"
+          gh release upload "${{ github.ref_name }}" "./dist/*.deb"
+          gh release upload "${{ github.ref_name }}" "./dist/*.freebsb"
+          gh release upload "${{ github.ref_name }}" "./dist/*.rpm"
 
