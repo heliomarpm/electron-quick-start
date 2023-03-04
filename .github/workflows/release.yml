@@ -85,20 +85,18 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           draft: true
-          prerelease: true
+          prerelease: false
           generateReleaseNotes: true
           artifacts: |
-            ./dist/*.exe
-            ./dist/*.zip
-            ./dist/*.tar.gz
+            ./dist/latest*.yml
             ./dist/*.dmg
-            ./dist/*.snap
+            ./dist/*.zip
             ./dist/*.AppImage
             ./dist/*.deb
             ./dist/*.freebsb
             ./dist/*.pacman
             ./dist/*.rpm
-            ./dist/latest*.yml
+            ./dist/*.exe
 
       # - name: Create Release
       #   env:
@@ -142,38 +140,39 @@ jobs:
       #   env:
       #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  build_windows:
-    runs-on: windows-latest
-    needs: build_release
-    permissions:
-      contents: write
+  # build_windows:
+  #   runs-on: windows-latest
+  #   needs: build_release
+  #   permissions:
+  #     contents: write
     
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v3
 
-      - name: Install Node.js, NPM and Yarn
-        uses: actions/setup-node@v3
-        with:
-          node-version: '>=16.8.0'
+  #     - name: Install Node.js, NPM and Yarn
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: '>=16.8.0'
 
-      - name: Build Electron app
-        uses: coparse-inc/action-electron-builder@v1.0.0
-        with:
-          max_attempts: 2
-          args: --ia32 --x64
-          github_token: ${{ secrets.github_token }}
-          release: false
+  #     - name: Build Electron app
+  #       uses: coparse-inc/action-electron-builder@v1.0.0
+  #       with:
+  #         max_attempts: 2
+  #         args: --ia32 --x64
+  #         github_token: ${{ secrets.github_token }}
+  #         release: false
 
-      - name: see directory
-        run: |
-          dir dist
+  #     - name: see directory
+  #       run: |
+  #         dir dist
       
-      - name: Create Release Asset
-        uses: ncipollo/release-action@v1
-        with:
-          draft: true
-          generateReleaseNotes: true
-          artifacts: |
-            ./dist/*.exe
-            ./dist/latest*.yml
+  #     - name: Create Release Asset
+  #       uses: ncipollo/release-action@v1
+  #       with:
+  #         draft: true
+  #         prerelease: false
+  #         generateReleaseNotes: true
+  #         artifacts: |
+  #           ./dist/latest*.yml
+  #           ./dist/*.exe
