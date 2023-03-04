@@ -25,25 +25,25 @@ jobs:
           args: --ia32 --x64
           max_attempts: 3
           github_token: ${{ secrets.github_token }}
-          release: false  # not create release
+          release: true  # not create release
 
       - name: see directory
         run: |
           dir dist
 
-      - name: Create Release
-        env:
-          GH_TOKEN: ${{ github.token }}
-          GH_REPO: ${{ github.repository }}
-        run: |
-          gh release create --draft "${{ github.ref_name }}" --title "${{ github.ref_name }}" --generate-notes 
+      # - name: Create Release
+      #   env:
+      #     GH_TOKEN: ${{ github.token }}
+      #     GH_REPO: ${{ github.repository }}
+      #   run: |
+      #     gh release create --draft "${{ github.ref_name }}" --title "${{ github.ref_name }}" --generate-notes 
 
-      - name: Upload Release Asset
-        env:
-          GH_TOKEN: ${{ github.token }}
-          GH_REPO: ${{ github.repository }}
-        run: |
-          gh release upload "${{ github.ref_name }}" "dist/*.exe"
+      # - name: Upload Release Asset
+      #   env:
+      #     GH_TOKEN: ${{ github.token }}
+      #     GH_REPO: ${{ github.repository }}
+      #   run: |
+      #     gh release upload "${{ github.ref_name }}" "dist/*.exe"
       
 
   build_maclinux:
@@ -83,7 +83,7 @@ jobs:
         with:
           max_attempts: 3
           github_token: ${{ secrets.github_token }}
-          release: false
+          release: true
 
       - name: see directory
         run: ls ./dist
@@ -94,15 +94,15 @@ jobs:
         #     ls ./dist
         #   fi
 
-      - name: Upload Release Asset
-        env:
-          GH_TOKEN: ${{ github.token }}
-          GH_REPO: ${{ github.repository }}
-        run: |
-          gh release upload "${{ github.ref_name }}" "./dist/*.dmg"
-          gh release upload "${{ github.ref_name }}" "./dist/*.zip"
-          gh release upload "${{ github.ref_name }}" "./dist/*.AppImage"
-          gh release upload "${{ github.ref_name }}" "./dist/*.deb"
-          gh release upload "${{ github.ref_name }}" "./dist/*.freebsb"
-          gh release upload "${{ github.ref_name }}" "./dist/*.rpm"
+      # - name: Upload Release Asset
+      #   env:
+      #     GH_TOKEN: ${{ github.token }}
+      #     GH_REPO: ${{ github.repository }}
+      #   run: |
+      #     gh release upload "${{ github.ref_name }}" "./dist/*.dmg"
+      #     gh release upload "${{ github.ref_name }}" "./dist/*.zip"
+      #     gh release upload "${{ github.ref_name }}" "./dist/*.AppImage"
+      #     gh release upload "${{ github.ref_name }}" "./dist/*.deb"
+      #     gh release upload "${{ github.ref_name }}" "./dist/*.freebsb"
+      #     gh release upload "${{ github.ref_name }}" "./dist/*.rpm"
 
