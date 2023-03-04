@@ -1,7 +1,7 @@
 {
   "name": "electron-quick-start",
   "productName": "Electron Quick Start",
-  "version": "1.0.30",
+  "version": "1.0.31",
   "description": "Your awesome app description",
   "main": "main.js",
   "scripts": {
