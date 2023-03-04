@@ -13,7 +13,7 @@ jobs:
     
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        os: [macos-latest, ubuntu-latest, windows-latest]
 
     steps:
       - name: Checkout
@@ -57,9 +57,12 @@ jobs:
           args: --ia32 --x64
 
       - name: see directory
-        run: ls ./dist
-        if: startsWith(matrix.os, 'windows-latest')
-        run: dir dist
+        run: |
+          if [[ startsWith(matrix.os, 'windows-latest') ]]; then
+            dir dist
+          else
+            ls ./dist
+          fi
       
       # - name: Create Release
       #   id: create_release
