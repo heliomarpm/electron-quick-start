@@ -5,15 +5,64 @@ on:
     tags: ["*"]
 
 jobs:
-  build_release:
+  build_windows:
+    runs-on: windows-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install Node.js, NPM and Yarn
+        uses: actions/setup-node@v3
+        with:
+          node-version: '>=16.8.0'
+
+      - name: Build Electron app
+        uses: coparse-inc/action-electron-builder@v1.0.0
+        with:
+          args: --ia32 --x64
+          github_token: ${{ secrets.github_token }}
+          release: false
+
+      - name: see directory
+        run: |
+          dir dist
+      
+      # - name: Create Release Asset
+      #   uses: ncipollo/release-action@v1
+      #   with:
+      #     draft: true
+      #     prerelease: false
+      #     generateReleaseNotes: true
+      #     artifacts: |
+      #       ./dist/latest*.yml
+      #       ./dist/*.exe
+      - name: Create Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          gh release create --draft "${{ github.ref_name }}" --title "${{ github.ref_name }}" --generate-notes 
+
+      - name: Upload Release Asset
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          gh release upload "${{ github.ref_name }}" ./dist/*.exe
+
+  build_maclinux:
     if: startsWith(github.ref, 'refs/tags/v')
     runs-on: ${{ matrix.os }}
+    needs: build_windows
     permissions:
       contents: write
     
     strategy:
       matrix:
-        os: [macos-latest, ubuntu-latest, windows-latest]
+        os: [macos-latest, ubuntu-latest]
 
     steps:
       - name: Checkout
@@ -86,28 +135,28 @@ jobs:
       #     asset_name: TJsonNotes-Setup-v1.1.0_win_x64.zip
       #     asset_content_type: application/zip
 
-      - name: Create Release Asset
-        uses: ncipollo/release-action@v1
-        with:
-          draft: true
-          prerelease: false
-          generateReleaseNotes: true
-          artifacts: |
-            if [[ startsWith(matrix.os, 'macos-') ]]; then
-              ./dist/latest*.yml
-              ./dist/*.dmg
-              ./dist/*.zip
-            else if [[ startsWith(matrix.os, 'linux-') ]]; then
-              ./dist/latest*.yml
-              ./dist/*.AppImage
-              ./dist/*.deb
-              ./dist/*.freebsb
-              ./dist/*.pacman
-              ./dist/*.rpm
-            else
-              ./dist/latest*.yml
-              ./dist/*.exe
-            fi
+      # - name: Create Release Asset
+      #   uses: ncipollo/release-action@v1
+      #   with:
+      #     draft: true
+      #     prerelease: false
+      #     generateReleaseNotes: true
+      #     artifacts: |
+      #       if [[ startsWith(matrix.os, 'macos-') ]]; then
+      #         ./dist/latest*.yml
+      #         ./dist/*.dmg
+      #         ./dist/*.zip
+      #       else if [[ startsWith(matrix.os, 'linux-') ]]; then
+      #         ./dist/latest*.yml
+      #         ./dist/*.AppImage
+      #         ./dist/*.deb
+      #         ./dist/*.freebsb
+      #         ./dist/*.pacman
+      #         ./dist/*.rpm
+      #       else
+      #         ./dist/latest*.yml
+      #         ./dist/*.exe
+      #       fi
               
 
       # - name: Create Release
@@ -117,21 +166,17 @@ jobs:
       #   run: |
       #     gh release create --draft "${{ github.ref_name }}" --title "${{ github.ref_name }}" --generate-notes 
 
-      # - name: Upload Release Asset
-      #   env:
-      #     GH_TOKEN: ${{ github.token }}
-      #     GH_REPO: ${{ github.repository }}
-      #   run: |
-      #     gh release upload "${{ github.ref_name }}" ./dist/*.exe
-      #     gh release upload "${{ github.ref_name }}" ./dist/*.zip
-      #     gh release upload "${{ github.ref_name }}" ./dist/*.tar.gz
-      #     gh release upload "${{ github.ref_name }}" ./dist/*.dmg
-      #     gh release upload "${{ github.ref_name }}" ./dist/*.snap
-      #     gh release upload "${{ github.ref_name }}" ./dist/*.AppImage
-      #     gh release upload "${{ github.ref_name }}" ./dist/*.deb
-      #     gh release upload "${{ github.ref_name }}" ./dist/*.freebsb
-      #     gh release upload "${{ github.ref_name }}" ./dist/*.pacman
-      #     gh release upload "${{ github.ref_name }}" ./dist/*.rpm
+      - name: Upload Release Asset
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          gh release upload "${{ github.ref_name }}" ./dist/*.dmg
+          gh release upload "${{ github.ref_name }}" ./dist/*.zip
+          gh release upload "${{ github.ref_name }}" ./dist/*.AppImage
+          gh release upload "${{ github.ref_name }}" ./dist/*.deb
+          gh release upload "${{ github.ref_name }}" ./dist/*.freebsb
+          gh release upload "${{ github.ref_name }}" ./dist/*.rpm
 
       # - name: Upload Release Asset
       #   uses: softprops/action-gh-release@v1
@@ -151,39 +196,3 @@ jobs:
       #       ./dist/${{ github.ref_name }}/*.rpm
       #   env:
       #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  # build_windows:
-  #   runs-on: windows-latest
-  #   needs: build_release
-  #   permissions:
-  #     contents: write
-    
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v3
-
-  #     - name: Install Node.js, NPM and Yarn
-  #       uses: actions/setup-node@v3
-  #       with:
-  #         node-version: '>=16.8.0'
-
-  #     - name: Build Electron app
-  #       uses: coparse-inc/action-electron-builder@v1.0.0
-  #       with:
-  #         args: --ia32 --x64
-  #         github_token: ${{ secrets.github_token }}
-  #         release: false
-
-  #     - name: see directory
-  #       run: |
-  #         dir dist
-      
-  #     - name: Create Release Asset
-  #       uses: ncipollo/release-action@v1
-  #       with:
-  #         draft: true
-  #         prerelease: false
-  #         generateReleaseNotes: true
-  #         artifacts: |
-  #           ./dist/latest*.yml
-  #           ./dist/*.exe
