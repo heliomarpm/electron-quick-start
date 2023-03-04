@@ -13,8 +13,7 @@ jobs:
     
     strategy:
       matrix:
-        os: [macos-latest, ubuntu-latest, windows-latest]
-        # os: [ubuntu-latest]
+        os: [macos-latest, ubuntu-latest]
 
     steps:
       - name: Checkout
@@ -47,6 +46,7 @@ jobs:
       - name: Build Electron app
         uses: coparse-inc/action-electron-builder@v1.0.0
         with:
+          max_attempts: 2
           # GitHub token, automatically provided to the action
           # (No need to define this secret in the repo settings)
           github_token: ${{ secrets.github_token }}
@@ -54,6 +54,10 @@ jobs:
           # If the commit is tagged with a version (e.g. "v1.0.0"),
           # release the app after building
           release: false
+
+      - name: see directory
+        run: |
+          ls ./dist
       
       # - name: Create Release
       #   id: create_release
@@ -76,9 +80,6 @@ jobs:
       #     asset_path: ./dist/${{ startsWith(github.ref, 'refs/tags/v') }}
       #     asset_name: TJsonNotes-Setup-v1.1.0_win_x64.zip
       #     asset_content_type: application/zip
-      - name: see directory
-        run: |
-          ls ./dist
 
       - name: Create Release Asset
         uses: ncipollo/release-action@v1
@@ -97,6 +98,7 @@ jobs:
             ./dist/*.freebsb
             ./dist/*.pacman
             ./dist/*.rpm
+            ./dist/latest*.yml
 
       # - name: Create Release
       #   env:
@@ -139,3 +141,39 @@ jobs:
       #       ./dist/${{ github.ref_name }}/*.rpm
       #   env:
       #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  build_windows:
+    runs-on: windows-latest
+    needs: build_release
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install Node.js, NPM and Yarn
+        uses: actions/setup-node@v3
+        with:
+          node-version: '>=16.8.0'
+
+      - name: Build Electron app
+        uses: coparse-inc/action-electron-builder@v1.0.0
+        with:
+          max_attempts: 2
+          args: --ia32 --x64
+          github_token: ${{ secrets.github_token }}
+          release: false
+
+      - name: see directory
+        run: |
+          dir dist
+      
+      - name: Create Release Asset
+        uses: ncipollo/release-action@v1
+        with:
+          draft: true
+          generateReleaseNotes: true
+          artifacts: |
+            ./dist/*.exe
+            ./dist/latest*.yml

@@ -1,7 +1,7 @@
 {
   "name": "electron-quick-start",
   "productName": "Electron Quick Start",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "description": "Your awesome app description",
   "main": "main.js",
   "scripts": {
@@ -9,6 +9,9 @@
     "start": "electron .",
     "postinstall": "electron-builder install-app-deps",
     "build": "electron-builder",
+    "build:win": "electron-builder -w --ia32 --x64",
+    "build:mac": "electron-builder -m",
+    "build:linux": "electron-builder -l",
     "publish": "node ./bin/modules/release/index.js"
   },
   "repository": {
@@ -49,8 +52,7 @@
     },
     "win": {
       "target": [
-        "nsis",
-        "portable"
+        "nsis"
       ]
     },
     "linux": {
