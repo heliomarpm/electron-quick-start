@@ -13,8 +13,8 @@ jobs:
     
     strategy:
       matrix:
-        # os: [macos-latest, ubuntu-latest, windows-latest]
-        os: [ubuntu-latest]
+        os: [macos-latest, ubuntu-latest, windows-latest]
+        # os: [ubuntu-latest]
 
     steps:
       - name: Checkout
@@ -80,7 +80,7 @@ jobs:
         run: |
           ls ./dist
 
-      - name: Upload Release Asset
+      - name: Create Release Asset
         uses: ncipollo/release-action@v1
         with:
           draft: true
