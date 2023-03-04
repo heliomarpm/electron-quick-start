@@ -1,7 +1,7 @@
 {
   "name": "electron-quick-start",
   "productName": "Electron Quick Start",
-  "version": "1.0.17",
+  "version": "1.0.18",
   "description": "Your awesome app description",
   "main": "main.js",
   "scripts": {
@@ -9,7 +9,7 @@
     "start": "electron .",
     "postinstall": "electron-builder install-app-deps",
     "build": "electron-builder",
-    "release": "node ./bin/modules/release/index.js"
+    "publish": "node ./bin/modules/release/index.js"
   },
   "repository": {
     "type": "git",
