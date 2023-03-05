@@ -102,13 +102,12 @@ jobs:
           release: true
 
       - name: see directory
-        # run: ls ./dist
-        run: |
-          if [[ startsWith(matrix.os, 'windows-latest') ]]; then
-            dir dist
-          else
-            ls ./dist
-          fi
+        if: startsWith(matrix.os, 'windows-latest') == false
+        run: ls ./dist
+
+      - name: see directory
+        if: startsWith(matrix.os, 'windows-latest')
+        run: dir dist
 
   # publish_linux:
   #   if: startsWith(github.ref, 'refs/tags/v')
