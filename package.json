@@ -9,9 +9,11 @@
     "start": "electron .",
     "postinstall": "electron-builder install-app-deps",
     "build": "electron-builder",
-    "build:win": "electron-builder -w --ia32 --x64",
     "build:mac": "electron-builder -m",
     "build:linux": "electron-builder -l",
+    "build:win": "electron-builder -w",
+    "build:win32": "electron-builder -w --ia32",
+    "build:win64": "electron-builder -w --x64",
     "publish": "node ./bin/modules/release/index.js"
   },
   "repository": {
@@ -39,10 +41,13 @@
     "semver": "^7.3.8"
   },
   "build": {
-    "appId": "br.heliomarpm.appname",
+    "appId": "br.heliomarpm.elqs",
     "productName": "Electron Quick Start",
     "copyright": "Copyright © 2023 — ${author}",
     "artifactName": "${name}_setup_v${version}_${os}-${arch}.${ext}",
+    "portable": {
+      "artifactName": "${productName}_Portable-v${version}_${os}-${arch}.${ext}"
+    },
     "directories": {
       "buildResources": "src/assets/build",
       "output": "dist"
@@ -52,7 +57,8 @@
     },
     "win": {
       "target": [
-        "nsis"
+        "nsis",
+        "portable"
       ]
     },
     "linux": {

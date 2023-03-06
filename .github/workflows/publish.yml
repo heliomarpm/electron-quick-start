@@ -41,19 +41,18 @@ jobs:
         if: startsWith(matrix.os, 'ubuntu-latest')
         run: sudo apt-get install libarchive-tools rpm
 
-      - name: Build Electron Mac/Linux
-        if: startsWith(matrix.os, 'windows-latest') == false
+      - name: Build Electron App
         uses: coparse-inc/action-electron-builder@v1.0.0
         with:
           max_attempts: 3
           github_token: ${{ secrets.github_token }}
           release: true
       
-      - name: Build Electron Windows
+      - name: Build Electron App Win32
         if: startsWith(matrix.os, 'windows-latest')
         uses: coparse-inc/action-electron-builder@v1.0.0
         with:
-          args: --ia32 --x64
+          args: --ia32
           max_attempts: 3
           github_token: ${{ secrets.github_token }}
           release: true
