@@ -1,6 +1,6 @@
 {
   "name": "electron-quick-start",
-  "productName": "Electron Quick Start",
+  "productName": "Electron Quick Start - VanillaJS",
   "version": "1.0.35",
   "description": "Your awesome app description",
   "main": "main.js",
@@ -14,7 +14,7 @@
     "build:win": "electron-builder -w",
     "build:win32": "electron-builder -w --ia32",
     "build:win64": "electron-builder -w --x64",
-    "publish": "node ./bin/modules/release/index.js"
+    "make:release": "node ./bin/modules/release/index.js"
   },
   "repository": {
     "type": "git",
