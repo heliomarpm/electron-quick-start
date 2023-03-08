@@ -1,9 +1,15 @@
-# Electron Quick Start - vanillaJS ![CodeQL](https://github.com/heliomarpm/electron-quick-start/actions/workflows/codeql-analysis.yml/badge.svg) ![Publish](https://github.com/heliomarpm/electron-quick-start/actions/workflows/publish.yml/badge.svg) 
+<h1 align="center">
+  <!-- <img src="https://user-images.githubusercontent.com/13087389/126053559-d4c7d080-0ad3-4deb-83dd-2a52b209e5f2.png" width="128" /> -->
+  <br> Electron Quick Start - vanillaJS
+
+  ![CodeQL](https://github.com/heliomarpm/electron-quick-start/actions/workflows/codeql-analysis.yml/badge.svg) ![Publish](https://github.com/heliomarpm/electron-quick-start/actions/workflows/publish.yml/badge.svg) <a href="https://navto.me/heliomarpm" target="_blank"><img src="https://navto.me/assets/navigatetome-brand.png" width="32"/></a>
+
+</h1>
 
 <p align="center">
   <!-- PayPal -->
   <a href="https://bit.ly/support-heliomarpm" target="_blank" rel="noopener noreferrer">
-    <img alt="kofi url" src="https://img.shields.io/badge/donate%20on-paypal-1C1E26?style=for-the-badge&labelColor=1C1E26&color=0475fe"/>
+    <img alt="paypal url" src="https://img.shields.io/badge/donate%20on-paypal-1C1E26?style=for-the-badge&labelColor=1C1E26&color=0475fe"/>
   </a>
   <!-- Ko-fi -->
   <a href="https://ko-fi.com/heliomarpm" target="_blank" rel="noopener noreferrer">
@@ -11,7 +17,7 @@
   </a>
   <!-- LiberaPay -->  
   <a href="https://liberapay.com/heliomarpm" target="_blank" rel="noopener noreferrer">
-     <img alt="releases url" src="https://img.shields.io/badge/liberapay-1C1E26?style=for-the-badge&labelColor=1C1E26&color=f6c915"/>
+     <img alt="liberapay url" src="https://img.shields.io/badge/liberapay-1C1E26?style=for-the-badge&labelColor=1C1E26&color=f6c915"/>
   </a>
   <!-- Version -->
   <a href="https://github.com/heliomarpm/electron-quick-start/releases" target="_blank" rel="noopener noreferrer">
@@ -108,7 +114,7 @@ If you appreciate that, please consider donating to the Developer.
 <p align="center">
   <!-- PayPal -->
   <a href="https://bit.ly/paypal-udeler" target="_blank" rel="noopener noreferrer">
-    <img alt="kofi url" src="https://img.shields.io/badge/donate%20on-paypal-1C1E26?style=for-the-badge&labelColor=1C1E26&color=0475fe"/>
+    <img alt="paypal url" src="https://img.shields.io/badge/donate%20on-paypal-1C1E26?style=for-the-badge&labelColor=1C1E26&color=0475fe"/>
   </a>
   <!-- Ko-fi -->
   <a href="https://ko-fi.com/heliomarpm" target="_blank" rel="noopener noreferrer">
@@ -116,11 +122,11 @@ If you appreciate that, please consider donating to the Developer.
   </a>
   <!-- LiberaPay -->  
   <a href="https://liberapay.com/heliomarpm" target="_blank" rel="noopener noreferrer">
-     <img alt="releases url" src="https://img.shields.io/badge/liberapay-1C1E26?style=for-the-badge&labelColor=1C1E26&color=f6c915"/>
+     <img alt="liberapay url" src="https://img.shields.io/badge/liberapay-1C1E26?style=for-the-badge&labelColor=1C1E26&color=f6c915"/>
   </a>  
   <!-- GitHub Sponsors -->
   <a href="https://github.com/sponsors/heliomarpm" target="_blank" rel="noopener noreferrer">
-    <img alt="license url" src="https://img.shields.io/badge/GitHub%20-Sponsor-1C1E26?style=for-the-badge&labelColor=1C1E26&color=db61a2"/>
+    <img alt="github sponsors url" src="https://img.shields.io/badge/GitHub%20-Sponsor-1C1E26?style=for-the-badge&labelColor=1C1E26&color=db61a2"/>
   </a>
 </p>
 
