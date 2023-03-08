@@ -95,7 +95,8 @@ npm run make:release
 - [electronjs.org/docs](https://electronjs.org/docs) - all of Electron's documentation
 
 # Contributing
-> **Note**: contributions are always welcome, but always **ask first**, — please — before work on a PR.
+
+Please make sure to read the [Contributing Guide](https://github.com/heliomarpm/electron-quick-start/blob/master/docs/CONTRIBUTING.md) before making a pull request.
 
 That said, there's a bunch of ways you can contribute to this project, like by:
 
