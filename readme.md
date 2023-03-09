@@ -98,6 +98,14 @@ npm run make:release
 
 Please make sure to read the [Contributing Guide](https://github.com/heliomarpm/electron-quick-start/blob/master/docs/CONTRIBUTING.md) before making a pull request.
 
+
+Thank you to all the people who already contributed to project!
+
+<a href="https://github.com/heliomarpm/electron-quick-start/graphs/contributors" target="_blank">
+  <img src="https://contrib.rocks/image?repo=heliomarpm/electron-quick-start" />
+</a>
+###### Made with [contrib.rocks](https://contrib.rocks).
+
 That said, there's a bunch of ways you can contribute to this project, like by:
 
 - :beetle: Reporting a bug
@@ -105,7 +113,6 @@ That said, there's a bunch of ways you can contribute to this project, like by:
 - :rotating_light: Sharing this project and recommending it to your friends
 - :dollar: Supporting this project on GitHub Sponsors or Ko-fi
 - :star2: Giving a star on this repository
-
 
 
 ## Donate
