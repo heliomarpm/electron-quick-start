@@ -104,6 +104,7 @@ Thank you to all the people who already contributed to project!
 <a href="https://github.com/heliomarpm/electron-quick-start/graphs/contributors" target="_blank">
   <img src="https://contrib.rocks/image?repo=heliomarpm/electron-quick-start" />
 </a>
+
 ###### Made with [contrib.rocks](https://contrib.rocks).
 
 That said, there's a bunch of ways you can contribute to this project, like by:
