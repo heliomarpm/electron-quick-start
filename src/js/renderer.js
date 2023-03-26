@@ -6,5 +6,7 @@
   * to expose Node.js functionality from the main process.
   */
 
-const { shell, remote, ipcRenderer } = require("electron");
-const { dialog, BrowserWindow } = remote;
+let $ = document.querySelector.bind(document);
+$("#r-node-version").innerText = versions.node;
+$("#r-chrome-version").innerText = versions.chrome;
+$("#r-electron-version").innerText = versions.electron;

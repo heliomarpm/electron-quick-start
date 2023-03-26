@@ -3,7 +3,7 @@
   "productName": "Electron Quick Start - VanillaJS",
   "version": "1.0.35",
   "description": "Your awesome app description",
-  "main": "main.js",
+  "main": "electron/main.js",
   "scripts": {
     "dev": "electron . --developer",
     "start": "electron .",
