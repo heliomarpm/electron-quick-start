@@ -4,6 +4,27 @@
   "version": "1.0.35",
   "description": "Your awesome app description",
   "main": "electron/main.js",
+  "author": {
+    "name": "Heliomar P. Marques",
+    "email": "heliomarpm@proton.me",
+    "url": "https://navto.me/heliomarpm"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/heliomarpm/electron-quick-start.git"
+  },
+  "bugs": {
+    "url": "https://github.com/heliomarpm/electron-quick-start/issues"
+  },
+  "homepage": "https://github.com/heliomarpm/electron-quick-start#readme",
+  "keywords": [
+    "electron",
+    "electron-quick-start",
+    "electron-app",
+    "electron-builder",
+    "vanillajs"
+  ],
   "scripts": {
     "dev": "electron . --developer",
     "start": "electron .",
@@ -16,24 +37,6 @@
     "build:win64": "electron-builder -w --x64",
     "make:release": "node ./cmd/modules/release/index.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/heliomarpm/electron-quick-start.git"
-  },
-  "keywords": [
-    "electron",
-    "electron-builder",
-    "vanillajs"
-  ],
-  "author": {
-    "name": "Heliomar P. Marques",
-    "email": "heliomarpm@proton.me"
-  },
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/heliomarpm/electron-quick-start/issues"
-  },
-  "homepage": "https://github.com/heliomarpm/electron-quick-start#readme",
   "devDependencies": {
     "electron": "^23.1.1",
     "electron-builder": "^23.6.0",
@@ -42,14 +45,14 @@
   },
   "build": {
     "appId": "br.heliomarpm.elqs",
-    "productName": "Electron Quick Start",
+    "productName": "Electron VanillaJS - Quick Start",
     "copyright": "Copyright © 2023 — ${author}",
-    "artifactName": "${name}_setup_v${version}_${os}-${arch}.${ext}",
+    "artifactName": "${name}_Setup_v${version}_${os}-${arch}.${ext}",
     "portable": {
-      "artifactName": "${productName}_Portable-v${version}_${os}-${arch}.${ext}"
+      "artifactName": "${name}_Portable-v${version}_${os}-${arch}.${ext}"
     },
     "directories": {
-      "buildResources": "src/assets/build",
+      "buildResources": "src/assets/icons",
       "output": "dist"
     },
     "mac": {
