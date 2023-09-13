@@ -50,6 +50,27 @@ You can learn more about each of these components in depth within the [Tutorial]
   </a>
 </p>
 
+# Features
+- **Stands out**
+  - 🔥 Fast and Ready-to-go with a well-thought-out structure
+  - 🚀 Auto reload for main and **Fast Refresh** for renderer process
+  - 🎉 Window and Screen routing included
+  - 😎 Preload (context bridge) already configured
+  - 🙀 IPC communication example included
+  - 🔮 GitHub Action releases with `Windows`, `Mac` and `Linux` binaries
+
+- **Technologies**:
+  - 🔋 Electron
+  - 🔥 Javascript
+  <!-- - 💫 Eslint / Prettier / EditorConfig  -->
+  - 📦 Electron Builder
+  - 🔮 action-electron-builder
+
+<br/>
+
+> :warning: If **Windows 7** and **8** support is important for your project, you should know that Electron in a version greater than 22x no longer supports it. You can read more about it [here](https://www.electronjs.org/docs/latest/breaking-changes#removed-windows-7--8--81-support). Therefore, you must downgrade Electron to the version cited in this context!
+
+
 ## To Use
 
 To clone and run this repository you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
