@@ -38,7 +38,7 @@
     "make:release": "node ./cmd/modules/release/index.js"
   },
   "devDependencies": {
-    "electron": "^23.1.1",
+    "electron": "^24.8.5",
     "electron-builder": "^24.2.0",
     "open": "^8.4.2",
     "semver": "^7.3.8"
