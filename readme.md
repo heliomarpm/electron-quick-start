@@ -1,6 +1,5 @@
 <div id="top" align="center" style="text-align:center;">
 <h1>
-  <!-- <img src="https://user-images.githubusercontent.com/13087389/126053559-d4c7d080-0ad3-4deb-83dd-2a52b209e5f2.png" width="128" /> -->
   <br> Electron Quick Start - vanillaJS
 
   ![CodeQL](https://github.com/heliomarpm/electron-quick-start/actions/workflows/codeql-analysis.yml/badge.svg) ![Publish](https://github.com/heliomarpm/electron-quick-start/actions/workflows/publish.yml/badge.svg) <a href="https://navto.me/heliomarpm" target="_blank"><img src="https://navto.me/assets/navigatetome-brand.png" width="32"/></a>
@@ -12,7 +11,7 @@
     <img alt="pixme url" src="https://img.shields.io/badge/donate%20on-pixme-1C1E26?style=for-the-badge&labelColor=1C1E26&color=28f4f4"/>
   </a>
   <!-- PayPal -->
-  <a href="https://bit.ly/paypal-support-heliomarpm" target="_blank" rel="noopener noreferrer">
+  <a href="https://bit.ly/paypal-sponsor-heliomarpm" target="_blank" rel="noopener noreferrer">
     <img alt="paypal url" src="https://img.shields.io/badge/paypal-1C1E26?style=for-the-badge&labelColor=1C1E26&color=0475fe"/>
   </a>
   <!-- Ko-fi -->
@@ -146,13 +145,13 @@ That said, there's a bunch of ways you can contribute to this project, like by:
 
 If you appreciate that, please consider donating to the Developer.
 
-<p align="center">
+<p>
   <!-- PixMe -->
   <a href="https://www.pixme.bio/heliomarpm" target="_blank" rel="noopener noreferrer">
     <img alt="pixme url" src="https://img.shields.io/badge/donate%20on-pixme-1C1E26?style=for-the-badge&labelColor=1C1E26&color=28f4f4"/>
   </a>
   <!-- PayPal -->
-  <a href="https://bit.ly/paypal-support-heliomarpm" target="_blank" rel="noopener noreferrer">
+  <a href="https://bit.ly/paypal-sponsor-heliomarpm" target="_blank" rel="noopener noreferrer">
     <img alt="paypal url" src="https://img.shields.io/badge/paypal-1C1E26?style=for-the-badge&labelColor=1C1E26&color=0475fe"/>
   </a>
   <!-- Ko-fi -->
