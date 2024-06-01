@@ -1,5 +1,6 @@
 <div id="top" align="center" style="text-align:center;">
 <h1>
+  <img src="https://raw.githubusercontent.com/heliomarpm/design_templates/main/Logo_QuickElectronJS.png?token=GHSAT0AAAAAAB3AKRA5UDCVHAACJC5WHYGKZS2QIBA" width="120"/>
   <br> Electron Quick Start - vanillaJS
 
   ![CodeQL](https://github.com/heliomarpm/electron-quick-start/actions/workflows/codeql-analysis.yml/badge.svg) ![Publish](https://github.com/heliomarpm/electron-quick-start/actions/workflows/publish.yml/badge.svg) <a href="https://navto.me/heliomarpm" target="_blank"><img src="https://navto.me/assets/navigatetome-brand.png" width="32"/></a>
