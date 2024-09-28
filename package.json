@@ -35,13 +35,14 @@
     "build:win": "electron-builder -w",
     "build:win32": "electron-builder -w --ia32",
     "build:win64": "electron-builder -w --x64",
-    "make:release": "node ./cmd/modules/release/index.js"
+    "deploy": "node ./node_modules/gh_deploy/index.js"
   },
   "devDependencies": {
-    "electron": "^30.0.1",
-    "electron-builder": "^24.13.3",
+    "electron": "^32.1.2",
+    "electron-builder": "^25.0.5",
+    "gh_deploy": "github:heliomarpm/gh_deploy",
     "open": "^10.1.0",
-    "semver": "^7.6.0"
+    "semver": "^7.6.3"
   },
   "build": {
     "appId": "br.heliomarpm.elqs",
