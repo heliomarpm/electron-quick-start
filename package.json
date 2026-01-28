@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "electron": "^35.7.5",
-    "electron-builder": "^25.0.5",
+    "electron-builder": "^26.6.0",
     "gh_deploy": "github:heliomarpm/gh_deploy",
     "open": "^10.1.0",
     "semver": "^7.6.3"
